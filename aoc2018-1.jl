@@ -34,7 +34,7 @@ print(res, "\n")
 """
 
 # Subproblem 2
-frequencies = []
+frequencies = Dict{Int, Int}()
 currentFreq = 0
 
 for (i, v) in enumerate(Iterators.cycle(lines))    
@@ -46,10 +46,12 @@ for (i, v) in enumerate(Iterators.cycle(lines))
         print(newFreq, " - ", currentFreq, " - ", length(frequencies), "\n")
     end
 
-    if newFreq in frequencies
+    if haskey(frequencies, newFreq)
         print("Already seen! ", newFreq, "\n")
         break
     end
-    push!(frequencies, newFreq)
+
+    frequencies[newFreq] = newFreq
+
     currentFreq = newFreq
 end
